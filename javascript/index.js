@@ -34,26 +34,48 @@ for (let i = 0; i < side.length; i++) {
 let sideAnimation;
 function expand() {
     this.removeEventListener('click', expand);
+    this.style.border = 0;
     activeSide = true;
     container.appendChild(this);
-    sideAnimation = this.animate(
-        [
+    if (window.innerWidth < 500) {
+        sideAnimation = this.animate(
+            [
+                {
+                    width: startSize,
+                    height: startSize
+                },
+                {
+                    width: '100vw',
+                    height: '100vh',
+                    transform: 'rotateY(0deg) rotateX(0deg) translateZ(0px)'
+                }
+            ],
             {
-                width: startSize,
-                height: startSize
-            },
-            {
-                width: '100vw',
-                height: '100vh',
-                transform: 'rotateY(0deg) rotateX(0deg) translateZ(0px)'
+                duration: 300,
+                easing: 'ease',
+                fill: 'forwards',
             }
-        ],
-        {
-            duration: 300,
-            easing: 'ease',
-            fill: 'forwards',
-        }
-    )
+        )
+    } else {
+        sideAnimation = this.animate(
+            [
+                {
+                    width: startSize,
+                    height: startSize
+                },
+                {
+                    width: expansionSize,
+                    height: expansionSize,
+                    transform: 'rotateY(0deg) rotateX(0deg) translateZ(0px)'
+                }
+            ],
+            {
+                duration: 300,
+                easing: 'ease',
+                fill: 'forwards',
+            }
+        )
+    }
 }
 
 
@@ -125,6 +147,7 @@ let oldTouchX = window.innerWidth / 2;
 let oldTouchY = window.innerHeight / 2;
 container.addEventListener('touchmove', touchRotate);
 function touchRotate(e) {
+    e.preventDefault();
     let touchX = e.touches[0].clientX;
     let touchY = e.touches[0].clientY;
     moveX += touchX - oldTouchX;
