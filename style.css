@@ -12,6 +12,7 @@ h1 {
 p {
     justify-self: center;
     align-self: center;
+    font-size: 0.8em;
 }
 
 .container {

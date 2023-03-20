@@ -32,11 +32,17 @@ for (let i = 0; i < side.length; i++) {
     side[i].addEventListener('click', expand);
 }
 let sideAnimation;
+let sideList = ['front', 'back', 'top', 'bottom', 'left', 'right'];
 function expand() {
     this.childNodes[1].classList.add('close-expanded');
-    document.querySelector('.profile').classList.add('profile-expanded');
-    document.querySelector('.bio').classList.add('bio-expanded');
-    document.querySelector('.skills').classList.add('skills-expanded');
+    console.log(this.classList);
+    if (this.childNodes[5].classList[0] == 'profile') {
+        document.querySelector('.profile').classList.add('profile-expanded');
+        document.querySelector('.bio').classList.add('bio-expanded');
+    }
+    if (this.childNodes[5].classList[0] == 'skills') {
+        document.querySelector('.skills').classList.add('skills-expanded');
+    }
 
     //this.childNodes[5].classList.add('profile-expanded');
     this.classList.add('side-expanded');
@@ -92,7 +98,6 @@ let closeButton = document.querySelectorAll('.close');
 for (let i = 0; i < closeButton.length; i++) {
     closeButton[i].addEventListener('click', closeSide);
 }
-let sideList = ['front', 'back', 'top', 'bottom', 'left', 'right'];
 function closeSide(e) {
     if (activeSide) {
         e.stopPropagation();
