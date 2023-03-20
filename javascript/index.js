@@ -35,7 +35,6 @@ let sideAnimation;
 let sideList = ['front', 'back', 'top', 'bottom', 'left', 'right'];
 function expand() {
     this.childNodes[1].classList.add('close-expanded');
-    console.log(this.classList);
     if (this.childNodes[5].classList[0] == 'profile') {
         document.querySelector('.profile').classList.add('profile-expanded');
         document.querySelector('.bio').classList.add('bio-expanded');
@@ -160,8 +159,8 @@ function wheelRotate(e) {
 
 //             -------- SWIPE ROTATION --------
 
-let oldTouchX = window.innerWidth / 2;
-let oldTouchY = window.innerHeight / 2;
+let oldTouchX = moveX;
+let oldTouchY = moveY;
 container.addEventListener('touchmove', touchRotate);
 function touchRotate(e) {
     e.preventDefault();
