@@ -35,12 +35,14 @@ let sideAnimation;
 let sideList = ['front', 'back', 'top', 'bottom', 'left', 'right'];
 function expand() {
     this.childNodes[1].classList.add('close-expanded');
-    if (this.childNodes[5].classList[0] == 'profile') {
-        document.querySelector('.profile').classList.add('profile-expanded');
-        document.querySelector('.bio').classList.add('bio-expanded');
-    }
-    if (this.childNodes[5].classList[0] == 'skills') {
-        document.querySelector('.skills').classList.add('skills-expanded');
+    if (this.childNodes.length > 5) {
+        if (this.childNodes[5].classList[0] == 'profile') {
+            document.querySelector('.profile').classList.add('profile-expanded');
+            document.querySelector('.bio').classList.add('bio-expanded');
+        }
+        if (this.childNodes[5].classList[0] == 'skills') {
+            document.querySelector('.skills').classList.add('skills-expanded');
+        }
     }
 
     //this.childNodes[5].classList.add('profile-expanded');
@@ -159,6 +161,8 @@ function wheelRotate(e) {
 
 //             -------- SWIPE ROTATION --------
 
+let oldPosition = moveX;
+let oldPositin = moveY;
 let oldTouchX = moveX;
 let oldTouchY = moveY;
 container.addEventListener('touchmove', touchRotate);
@@ -166,8 +170,15 @@ function touchRotate(e) {
     e.preventDefault();
     let touchX = e.touches[0].clientX;
     let touchY = e.touches[0].clientY;
-    moveX += touchX - oldTouchX;
-    moveY += touchY - oldTouchY;
+    let deltaX = touchX - oldTouchX;
+    let deltaY = touchY - oldTouchY;
+    if (Math.abs(deltaX) < 100) {
+        moveX += deltaX;
+    }
+    if (Math.abs(deltaY) < 100) {
+        moveY += deltaY;
+    }
+    console.log(touchY, oldTouchY,  deltaX, moveY);
     cube.style.transform = `rotateX(${-moveY}deg) rotateY(${moveX}deg)`;
     oldTouchX = touchX;
     oldTouchY = touchY;
