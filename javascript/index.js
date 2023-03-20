@@ -33,8 +33,14 @@ for (let i = 0; i < side.length; i++) {
 }
 let sideAnimation;
 function expand() {
+    this.childNodes[1].classList.add('close-expanded');
+    document.querySelector('.profile').classList.add('profile-expanded');
+    document.querySelector('.bio').classList.add('bio-expanded');
+    document.querySelector('.skills').classList.add('skills-expanded');
+
+    //this.childNodes[5].classList.add('profile-expanded');
+    this.classList.add('side-expanded');
     this.removeEventListener('click', expand);
-    this.style.border = 0;
     activeSide = true;
     container.appendChild(this);
     if (window.innerWidth < 500) {
@@ -90,8 +96,14 @@ let sideList = ['front', 'back', 'top', 'bottom', 'left', 'right'];
 function closeSide(e) {
     if (activeSide) {
         e.stopPropagation();
+        this.classList.remove('close-expanded');
+        document.querySelector('.profile').classList.remove('profile-expanded');
+        document.querySelector('.bio').classList.remove('bio-expanded');
+        document.querySelector('.skills').classList.remove('skills-expanded');
+
         let expandedSide = this.parentNode;
         let sidePosition = expandedSide.classList[1];
+        expandedSide.classList.remove('side-expanded');
         sideAnimation.cancel();
         container.removeChild(expandedSide);
         let sideIndex;
@@ -109,8 +121,8 @@ function closeSide(e) {
 
 //               ---------- KEY ROTATION ----------------
 
-let moveY = 0;
-let moveX = 0;
+let moveY = -28.6;
+let moveX = 37.4;
 window.addEventListener("keydown", keyRotate);
 function keyRotate(e) {
     switch (e.key) {
@@ -156,3 +168,25 @@ function touchRotate(e) {
     oldTouchX = touchX;
     oldTouchY = touchY;
 }
+
+
+//             -------- TAB FOCUS ----------
+
+// window.addEventListener('keydown', tabFocus);
+// let position;
+// function tabFocus(e) {
+//     console.log(document.activeElement);
+//     sideList.forEach((element) => {
+//         if (document.activeElement.classList[1] === element) {
+//             position = element;
+//         }
+//     });
+//     console.log(position);
+    
+// }
+
+
+//          --------- ENTER KEY EXPAND ---------
+
+
+//          --------- ESC (OR OTHER) KEY CLOSE --------

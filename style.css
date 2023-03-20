@@ -1,5 +1,12 @@
 body {
     margin: 0;
+    font-size: 4vh;
+}
+
+h1 {
+    justify-self: center;
+    align-self: center;
+    font-size: 1.3em;
 }
 
 p {
@@ -9,7 +16,7 @@ p {
 
 .container {
     height: 100vh;
-    background-color: #2f3e46;
+    background-color: rgb(173, 181, 189);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,17 +31,25 @@ p {
 .cube {
     position: relative;
     transform-style: preserve-3d;
+    transform: rotateX(-28.6deg) rotateY(37.4deg);
 }
 
 .side {
-    background-color: #cad2c5;
-    border: 1px solid #84a98c;
+    background-color: rgba(33, 37, 41, 0.8);
+    border: 1px solid rgba(248, 249, 250, 0.5);  
     position: absolute;
     display: flex;
     flex-direction: column;
-    color: #52796f;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2em;
+    justify-content: center;
+    color: rgb(248, 249, 250);
+    font-family: 'Courier New', Courier, monospace;
+    /* font-size: 5vh; */
+}
+
+.side-expanded {
+    justify-content: flex-start;
+    border-radius: 10%;
+    background-color: rgba(33, 37, 41, 1);
 }
 
 .front{
@@ -67,9 +82,16 @@ p {
     background-color: coral;
     border-radius: 50px;
     margin: 5px;
-    justify-self: flex-start;
+    /* justify-self:start ; */
+    /* align-self: flex-end; */
+    justify-self: left;
     align-self: flex-end;
-    /* align-self:flex-end; */
+    display: none;
+}
+
+.close-expanded {
+    display: block;
+    margin: 5vh 5vh 0 0;
 }
 
 @media (orientation: portrait) {
@@ -102,3 +124,160 @@ p {
         transform: rotateY(90deg) translateZ(25vw);
     }
 }
+
+/*         ----------     BIO CONTENT     --------            */
+
+.profile {
+    height: 20vh;
+    width: 20vh;
+    min-height: 20vh;
+    background-color: rgb(248, 249, 250);
+    border: 0.6vh solid rgb(248, 249, 250);
+    border-radius: 50%;
+    align-self: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-expanded {
+    display: flex;
+}
+  
+.avatar {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    overflow: hidden;
+}
+
+.head {
+    height: 10vh;
+    width: 10vh;
+    background-color: rgba(33, 37, 41, 1);
+    border-radius: 50%;
+    margin-top: -4vh;
+    position: absolute;
+}
+
+.shoulder {
+    height: 20vh;
+    width: 20vh;
+    margin-top: 26vh;
+    background-color: rgba(33, 37, 41, 1);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.bio {
+    margin: 8vh 0 0 3vh;
+    display: none;
+}
+
+.bio-expanded {
+    display: block;
+}
+
+
+/*           ---------    SKILL CONTENT   ---------         */
+
+.skills {
+    display: none;
+    grid-template-areas:
+        'label-1 bar-1'
+        'label-2 bar-2'
+        'label-3 bar-3'
+        'label-4 bar-4'
+        'label-5 bar-5';
+    margin: 10vh 8vh;
+    gap: 1em 2em;
+}
+
+.skills-expanded {
+    display: grid;
+}
+
+.label:nth-child(1) {
+    grid-area: label-1;
+}
+
+.label:nth-child(2) {
+    grid-area: label-2;
+}
+
+.label:nth-child(3) {
+    grid-area: label-3;
+}
+
+.label:nth-child(4) {
+    grid-area: label-4;
+}
+
+.label:nth-child(5) {
+    grid-area: label-5;
+}
+
+.bar {
+    height: 3.2vh;
+    width: 50vh;
+    border: 2px solid white;
+    border-radius: 3.2vh;
+    background-color: rgb(248, 249, 250);
+    transition: width 1s;
+    overflow: hidden;
+}
+
+.bar:nth-child(1) {
+    grid-area: bar-1;
+}
+
+.bar:nth-child(2) {
+    grid-area: bar-2;
+}
+
+.bar:nth-child(3) {
+    grid-area: bar-3;
+}
+
+.bar:nth-child(4) {
+    grid-area: bar-4;
+}
+
+.bar:nth-child(5) {
+    grid-area: bar-5;
+}
+
+.progress {
+    height: 3.2vh;
+    border-radius: 3.2vh;
+    background-color: rgba(33, 37, 41, 1);
+}
+
+.html {
+    width: 45vh;   
+}
+
+.css {
+    width: 40vh;   
+}
+
+.javascript {
+    width: 35vh;   
+}
+
+.python {
+    width: 40vh;   
+}
+
+.mysql {
+    width: 20vh;   
+}
+
+
+/*          -------    CONTACT CONTENT    ---------            */
